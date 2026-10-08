@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Filipino Saints & Sainthood Candidates</title>
+
+<style>
+:root {
+    --bg: #080808;
+    --surface: #111111;
+    --surface2: #171717;
+    --border: #292929;
+    --text: #f1f1f1;
+    --muted: #9a9a9a;
+    --gold: #c9a96e;
+    --gold-light: #e4c98e;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background:
+        radial-gradient(circle at top, #17130c 0%, #080808 40%);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+/* NAVIGATION */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(8,8,8,.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 15px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: var(--gold-light);
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+nav a {
+    color: #aaa;
+    text-decoration: none;
+    margin-left: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+
+nav a:hover {
+    color: var(--gold-light);
+}
+
+/* HERO */
+
+.hero {
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.hero-content {
+    max-width: 900px;
+}
+
+.cross {
+    font-size: 45px;
+    color: var(--gold);
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 7vw, 76px);
+    line-height: 1.05;
+    letter-spacing: -2px;
+}
+
+.hero h1 span {
+    color: var(--gold-light);
+}
+
+.hero p {
+    max-width: 650px;
+    margin: 25px auto;
+    color: var(--muted);
+    font-size: 17px;
+}
+
+.hero-line {
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+    margin: 30px auto;
+}
+
+/* INTRO */
+
+.intro {
+    max-width: 900px;
+    margin: auto;
+    padding: 70px 20px 30px;
+    text-align: center;
+}
+
+.intro h2 {
+    font-size: 30px;
+    color: var(--gold-light);
+    margin-bottom: 15px;
+}
+
+.intro p {
+    color: var(--muted);
+}
+
+/* CONTROLS */
+
+.controls {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+#search {
+    flex: 1;
+    min-width: 240px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: white;
+    padding: 14px 17px;
+    border-radius: 8px;
+    outline: none;
+}
+
+#search:focus {
+    border-color: var(--gold);
+}
+
+.filter {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: #aaa;
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.filter.active,
+.filter:hover {
+    color: var(--gold-light);
+    border-color: var(--gold);
+}
+
+/* GRID */
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* CARD */
+
+.card {
+    background: linear-gradient(145deg, #151515, #0d0d0d);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: .3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #51452f;
+}
+
+.card-image {
+    height: 230px;
+    background: #0d0d0d;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(25%) brightness(.75);
+    transition: .4s;
+}
+
+.card:hover .card-image img {
+    transform: scale(1.04);
+    filter: grayscale(0%) brightness(.85);
+}
+
+.card-content {
+    padding: 23px;
+}
+
+.number {
+    color: #666;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.card h3 {
+    margin: 7px 0 5px;
+    font-size: 25px;
+}
+
+.role {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.status {
+    display: inline-block;
+    border: 1px solid #54472f;
+    color: var(--gold-light);
+    border-radius: 50px;
+    padding: 4px 10px;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: #b7b7b7;
+    font-size: 14px;
+}
+
+.read-more {
+    margin-top: 18px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--gold-light);
+    padding: 9px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: Georgia, serif;
+}
+
+.read-more:hover {
+    background: #1c1811;
+    border-color: var(--gold);
+}
+
+/* MODAL */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.88);
+    z-index: 2000;
+    overflow-y: auto;
+    padding: 40px 20px;
+}
+
+.modal-box {
+    max-width: 850px;
+    margin: auto;
+    background: #111;
+    border: 1px solid #393126;
+    border-radius: 15px;
+    padding: 35px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 22px;
+    top: 15px;
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: white;
+}
+
+.modal-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 20px 0;
+    filter: brightness(.8);
+}
+
+.modal h2 {
+    font-size: 38px;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+}
+
+.modal h4 {
+    color: var(--gold);
+    margin-top: 28px;
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.modal p {
+    color: #c0c0c0;
+}
+
+/* TIMELINE */
+
+.timeline {
+    margin-top: 30px;
+    border-left: 1px solid #4a3e2b;
+    padding-left: 20px;
+}
+
+.timeline-item {
+    margin-bottom: 18px;
+}
+
+.timeline-item strong {
+    color: var(--gold-light);
+}
+
+/* FOOTER */
+
+footer {
+    margin-top: 90px;
+    border-top: 1px solid var(--border);
+    padding: 45px 20px;
+    text-align: center;
+    color: #666;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+footer strong {
+    color: var(--gold-light);
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    nav {
+        padding: 13px 18px;
+    }
+
+    nav a {
+        display: none;
+    }
+
+    .hero {
+        min-height: 65vh;
+    }
+
+    .hero h1 {
+        font-size: 43px;
+    }
+
+    .modal-box {
+        padding: 25px 20px;
+    }
+
+    .modal h2 {
+        font-size: 30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+    <div class="logo">✝ THE PATH TO HOLINESS</div>
+
+    <div>
+        <a href="#home">Home</a>
+        <a href="#people">Lives</a>
+        <a href="#about">About</a>
+    </div>
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="cross">✝</div>
+
+        <h1>
+            Filipino Saints<br>
+            <span>& Sainthood Candidates</span>
+        </h1>
+
+        <div class="hero-line"></div>
+
+        <p>
+            Discover the lives, faith, sacrifices, missionary work,
+            and spiritual legacy of men and women connected with
+            the history of Catholicism in the Philippines.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- INTRO -->
+
+<section class="intro">
+
+    <h2>Witnesses of Faith</h2>
+
+    <p>
+        Some have already been canonized as saints. Others have been
+        beatified or declared venerable, while others are being
+        remembered through ongoing causes for sainthood.
+        Their stories show different ways of living a life of
+        faith, service, courage, charity, and devotion.
+    </p>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<div class="controls">
+
+    <input
+        type="text"
+        id="search"
+        placeholder="Search a name, place, or vocation..."
+        onkeyup="filterCards()"
+    >
+
+    <button class="filter active" onclick="filterStatus('all', this)">
+        All
+    </button>
+
+    <button class="filter" onclick="filterStatus('Saint', this)">
+        Saints
+    </button>
+
+    <button class="filter" onclick="filterStatus('Blessed', this)">
+        Blesseds
+    </button>
+
+    <button class="filter" onclick="filterStatus('Venerable', this)">
+        Venerables
+    </button>
+
+    <button class="filter" onclick="filterStatus('Servant of God', this)">
+        Servants of God
+    </button>
+
+</div>
+
+
+<!-- PEOPLE -->
+
+<main class="container" id="people">
+
+    <div class="grid" id="cards"></div>
+
+</main>
+
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+    <div class="modal-box">
+
+        <button class="close" onclick="closeModal()">×</button>
+
+        <div id="modalContent"></div>
+
+    </div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer id="about">
+
+    <p>
+        <strong>THE PATH TO HOLINESS</strong>
+    </p>
+
+    <p>
+        A digital educational project about Catholic witnesses
+        connected with the Philippines.
+    </p>
+
+    <br>
+
+    <p>
+        Information should be verified with official Catholic
+        diocesan, religious-order, and Vatican sources.
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   PEOPLE DATA
+   ========================================================= */
+
+const people = [
+
+{
+    name: "St. Lorenzo Ruiz",
+    status: "Saint",
+    role: "Layman • Martyr",
+    image: "images/lorenzo-ruiz.jpg",
+
+    summary:
+    "The first Filipino canonized saint and a martyr of the faith in Japan.",
+
+    history:
+    "Lorenzo Ruiz was a Filipino layman from Manila who belonged to the Confraternity of the Most Holy Rosary. After becoming involved in a difficult situation in Manila, he left the Philippines with Dominican missionaries and eventually reached Japan. At a time when Christianity was severely persecuted, Lorenzo was arrested and pressured to renounce his faith.",
+
+    why:
+    "Lorenzo remained faithful to Christianity despite persecution and died as a martyr in Nagasaki in 1637. His steadfastness made him a powerful symbol of Filipino Christian faith. He was beatified by Pope John Paul II in Manila in 1981 and canonized in Rome in 1987.",
+
+    timeline: [
+        ["1594", "Born in Manila."],
+        ["1636", "Left the Philippines with Dominican missionaries."],
+        ["1637", "Martyred in Nagasaki, Japan."],
+        ["1981", "Beatified by Pope John Paul II."],
+        ["1987", "Canonized as the first Filipino saint."]
+    ]
+},
+
+{
+    name: "St. Pedro Calungsod",
+    status: "Saint",
+    role: "Young Lay Catechist • Martyr",
+    image: "images/pedro-calungsod.jpg",
+
+    summary:
+    "A young Filipino catechist who served Jesuit missionaries in the Mariana Islands.",
+
+    history:
+    "Very little is known about Pedro Calungsod's childhood and exact birthplace. Historical research has associated his origins with several places in the Visayas, including Ginatilan in Cebu, Hinunangan and Hinudayan in Southern Leyte, and Molo in Iloilo. Around 1668, while still a teenager, Pedro joined the Jesuit mission to the Mariana Islands as a young catechist.",
+
+    why:
+    "Pedro assisted missionaries in teaching the Catholic faith and serving the Chamorro people. He remained with Fr. Diego Luis de San Vitores during a period of increasing opposition to the mission. Pedro was killed in Guam in 1672 and was later recognized as a martyr. He was canonized by Pope Benedict XVI in 2012.",
+
+    timeline: [
+        ["c. 1654", "Traditionally placed birth year."],
+        ["1668", "Joined the Jesuit mission to the Marianas."],
+        ["1672", "Martyred in Guam."],
+        ["2000", "Beatified by Pope John Paul II."],
+        ["2012", "Canonized by Pope Benedict XVI."]
+    ]
+},
+
+{
+    name: "Blessed Justo Takayama Ukon",
+    status: "Blessed",
+    role: "Japanese Layman • Confessor",
+    image: "images/justo-takayama.jpg",
+
+    summary:
+    "A Japanese Christian nobleman who chose fidelity to Christ over political power.",
+
+    history:
+    "Justo Takayama Ukon was born in Japan in the sixteenth century. He became a prominent Christian samurai during a time when Christianity faced increasing persecution. Rather than abandon his faith, he accepted the loss of his position and possessions.",
+
+    why:
+    "Ukon was eventually exiled from Japan and arrived in Manila in 1614. He died in Manila only a short time later. His life is remembered for choosing faith over status and earthly power. He was beatified in Manila in 2017.",
+
+    timeline: [
+        ["c. 1552", "Born in Japan."],
+        ["16th century", "Became a prominent Christian samurai."],
+        ["1614", "Exiled from Japan and arrived in Manila."],
+        ["1615", "Died in Manila."],
+        ["2017", "Beatified in Osaka."]
+    ]
+},
+
+{
+    name: "Blessed Diego Luis de San Vitores",
+    status: "Blessed",
+    role: "Jesuit Priest • Missionary • Martyr",
+    image: "images/diego-san-vitores.jpg",
+
+    summary:
+    "A Spanish Jesuit missionary who led the Catholic mission in the Mariana Islands.",
+
+    history:
+    "Diego Luis de San Vitores was a Spanish Jesuit priest who dedicated himself to missionary work. He became the leader of the Jesuit mission to the Mariana Islands, where he worked to introduce Christianity and establish Catholic communities.",
+
+    why:
+    "San Vitores continued his missionary work despite serious opposition. He was killed in Guam in 1672. His martyrdom is closely connected with the same mission in which Pedro Calungsod served. He was beatified by Pope John Paul II in 1985.",
+
+    timeline: [
+        ["1627", "Born in Burgos, Spain."],
+        ["1668", "Led the Jesuit mission to the Marianas."],
+        ["1672", "Martyred in Guam."],
+        ["1985", "Beatified by Pope John Paul II."]
+    ]
+},
+
+{
+    name: "Blessed José María de Manila",
+    status: "Blessed",
+    role: "Capuchin Priest • Martyr",
+    image: "images/jose-maria-de-manila.jpg",
+
+    summary:
+    "Eugenio Sanz-Orozco Mortera, a Manila-born Capuchin priest who died during religious persecution in Spain.",
+
+    history:
+    "Eugenio Sanz-Orozco Mortera was born in Manila in 1880. He later entered the Capuchin religious life and took the name José María of Manila. He served as a priest in Spain and dedicated himself to pastoral ministry.",
+
+    why:
+    "During the religious persecution surrounding the Spanish Civil War, José María was arrested and killed in Madrid in 1936. The Catholic Church recognized him as a martyr. He was beatified in 2013.",
+
+    timeline: [
+        ["1880", "Born in Manila."],
+        ["1900s", "Entered the Capuchin religious life."],
+        ["1936", "Martyred in Madrid."],
+        ["2013", "Beatified."]
+    ]
+},
+
+{
+    name: "Venerable Ignacia del Espíritu Santo",
+    status: "Venerable",
+    role: "Foundress • Religious of the Virgin Mary",
+    image: "images/ignacia-del-espiritu-santo.jpg",
+
+    summary:
+    "A Filipina religious foundress who established the community that became the Religious of the Virgin Mary.",
+
+    history:
+    "Mother Ignacia del Espíritu Santo was born in Manila in 1663. She devoted herself to prayer, penance, service, and the education and spiritual formation of women. She gathered companions around a life centered on prayer and service.",
+
+    why:
+    "Her community developed into the Religious of the Virgin Mary, one of the important Filipino-founded religious congregations. Her life of heroic Christian virtue led Pope Benedict XVI to declare her Venerable in 2007.",
+
+    timeline: [
+        ["1663", "Born in Manila."],
+        ["Late 1600s", "Began her religious community."],
+        ["1748", "Died in Manila."],
+        ["2007", "Declared Venerable."]
+    ]
+},
+
+{
+    name: "Venerable Teofilo Camomot",
+    status: "Venerable",
+    role: "Archbishop • Founder",
+    image: "images/teofilo-camomot.jpg",
+
+    summary:
+    "A Cebuano bishop remembered for his simplicity, prayer, pastoral dedication, and service to the poor.",
+
+    history:
+    "Teofilo Camomot was born in Carcar, Cebu, in 1914. He became a priest and later a bishop. His ministry was marked by pastoral work, spiritual direction, and concern for ordinary people.",
+
+    why:
+    "He founded the Daughters of St. Teresa and was known for a simple and prayerful lifestyle. His reputation for holiness continued after his death. The Church declared him Venerable in 2022 after recognizing his heroic virtues.",
+
+    timeline: [
+        ["1914", "Born in Carcar, Cebu."],
+        ["1940", "Ordained a priest."],
+        ["1950s", "Became involved in episcopal ministry."],
+        ["1988", "Died in Cebu."],
+        ["2022", "Declared Venerable."]
+    ]
+},
+
+{
+    name: "Venerable Maria Beatriz del Rosario Arroyo",
+    status: "Venerable",
+    role: "Religious • Foundress",
+    image: "images/maria-beatriz-arroyo.jpg",
+
+    summary:
+    "A Filipina religious foundress associated with the Dominican Sisters of the Most Holy Rosary of the Philippines.",
+
+    history:
+    "Maria Beatriz del Rosario Arroyo was born in Molo, Iloilo, in 1884. She entered religious life and became deeply involved in prayer, education, and service. She eventually became an important figure in the development of the Dominican religious community in Molo.",
+
+    why:
+    "Her life was characterized by prayer, discipline, charity, and service to others. She founded the Dominican Sisters of the Most Holy Rosary of the Philippines, also known as the Dominican Sisters of Molo. She was declared Venerable in 2019.",
+
+    timeline: [
+        ["1884", "Born in Molo, Iloilo."],
+        ["Early 1900s", "Entered religious life."],
+        ["Religious ministry", "Served through prayer, education and charity."],
+        ["1957", "Died in Iloilo."],
+        ["2019", "Declared Venerable."]
+    ]
+},
+
+{
+    name: "Servant of God Richard Michael Fernando",
+    status: "Servant of God",
+    role: "Jesuit Scholastic • Martyr",
+    image: "images/richard-fernando.jpg",
+
+    summary:
+    "A Filipino Jesuit scholastic who served poor communities in Cambodia and died while protecting another person.",
+
+    history:
+    "Richard Michael Fernando was born in the Philippines in 1970 and entered the Society of Jesus. During his formation, he was sent to Cambodia, where he worked among people affected by poverty and conflict.",
+
+    why:
+    "Fernando died in 1996 in Cambodia. His life and death are remembered for his missionary commitment and willingness to protect another person. His cause is associated with the Church's recognition of his Christian witness and martyrdom.",
+
+    timeline: [
+        ["1970", "Born in the Philippines."],
+        ["Jesuit formation", "Entered religious formation with the Jesuits."],
+        ["Cambodia", "Served among communities affected by conflict."],
+        ["1996", "Died in Cambodia."]
+    ]
+},
+
+{
+    name: "Servant of God Fr. Rhoel Gallardo, CMF",
+    status: "Servant of God",
+    role: "Claretian Priest • Martyr",
+    image: "images/rhoel-gallardo.jpg",
+
+    summary:
+    "A Filipino Claretian priest remembered for his courage and fidelity while serving in Basilan.",
+
+    history:
+    "Fr. Rhoel Gallardo was born in 1965 and became a priest of the Claretian Missionaries. He served in Basilan, where he worked among communities experiencing serious social and security difficulties.",
+
+    why:
+    "In 2000, Fr. Gallardo was captured together with others and later killed. His life is remembered as a witness to pastoral courage and dedication to the people he served. He is included among Filipino candidates whose causes are being promoted for sainthood.",
+
+    timeline: [
+        ["1965", "Born in the Philippines."],
+        ["Priesthood", "Joined the Claretian Missionaries."],
+        ["Basilan", "Served as a missionary priest."],
+        ["2000", "Died after being held captive."]
+    ]
+},
+
+{
+    name: "Venerable Alfredo María Obviar",
+    status: "Venerable",
+    role: "Bishop • Founder",
+    image: "images/alfredo-obviar.jpg",
+
+    summary:
+    "The first Bishop of Lucena and founder of the Missionary Catechists of Saint Thérèse of the Infant Jesus.",
+
+    history:
+    "Alfredo María Obviar was born in Batangas in 1889. 
