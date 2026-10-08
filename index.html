@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lives for God — Saints, Blesseds, Venerables and Servants of God connected with the Philippines.">
+  <title>Lives for God | Philippine Saints & Causes</title>
+  <style>
+    :root{
+      --blue:#0879bd;
+      --navy:#102b46;
+      --gold:#c89b3c;
+      --cream:#fbfaf6;
+      --ink:#18212b;
+      --muted:#66717d;
+      --white:#fff;
+      --shadow:0 18px 45px rgba(16,43,70,.12);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      color:var(--ink);
+      background:var(--cream);
+      line-height:1.6;
+    }
+    a{text-decoration:none;color:inherit}
+    .hero{
+      min-height:82vh;
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(120deg,rgba(7,31,54,.92),rgba(8,121,189,.72)),
+        url("lives-for-god.png") center/cover no-repeat;
+      color:white;
+    }
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:420px;height:420px;
+      border:1px solid rgba(255,255,255,.25);
+      border-radius:50%;
+      right:-120px;top:-120px;
+      box-shadow:0 0 0 70px rgba(255,255,255,.04),0 0 0 140px rgba(255,255,255,.03);
+    }
+    .hero-inner{width:min(1120px,92%);margin:auto;position:relative;z-index:2;padding:80px 0}
+    .eyebrow{
+      display:inline-block;
+      border:1px solid rgba(255,255,255,.45);
+      border-radius:999px;
+      padding:8px 16px;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      font-size:.78rem;
+      margin-bottom:22px;
+    }
+    h1{
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:clamp(3rem,8vw,6.7rem);
+      line-height:.95;
+      margin:0 0 24px;
+      max-width:850px;
+    }
+    .hero p{font-size:1.12rem;max-width:720px;color:#eef7ff}
+    .cta{
+      display:inline-block;
+      margin-top:22px;
+      padding:13px 21px;
+      border-radius:999px;
+      background:white;
+      color:var(--navy);
+      font-weight:700;
+    }
+    nav{
+      position:sticky;top:0;z-index:20;
+      background:rgba(255,255,255,.94);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid #e8e9eb;
+    }
+    .nav-inner{
+      width:min(1120px,92%);margin:auto;
+      min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px;
+    }
+    .brand{font-weight:900;color:var(--navy);letter-spacing:.5px}
+    .navlinks{display:flex;gap:20px;font-size:.92rem;font-weight:700;color:#44505c}
+    .navlinks a:hover{color:var(--blue)}
+    section{padding:82px 0}
+    .container{width:min(1120px,92%);margin:auto}
+    .section-head{text-align:center;max-width:760px;margin:0 auto 42px}
+    .section-head h2{
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:clamp(2rem,5vw,3.2rem);
+      margin:0 0 12px;color:var(--navy)
+    }
+    .section-head p{color:var(--muted);margin:0}
+    .stats{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-top:-48px;position:relative;z-index:5
+    }
+    .stat{
+      background:white;border-radius:18px;padding:22px;text-align:center;box-shadow:var(--shadow)
+    }
+    .stat strong{display:block;font-size:2rem;color:var(--blue)}
+    .stat span{color:var(--muted);font-size:.88rem}
+    .toolbar{
+      display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:28px
+    }
+    .filters{display:flex;gap:8px;flex-wrap:wrap}
+    .filter{
+      border:1px solid #d7dde2;background:white;color:#46525e;
+      padding:9px 14px;border-radius:999px;cursor:pointer;font-weight:700
+    }
+    .filter.active,.filter:hover{background:var(--blue);border-color:var(--blue);color:white}
+    .search{
+      width:min(320px,100%);border:1px solid #d7dde2;background:white;
+      border-radius:999px;padding:11px 16px;outline:none
+    }
+    .search:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(8,121,189,.12)}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .card{
+      background:white;border:1px solid #e7e8ea;border-radius:22px;overflow:hidden;
+      box-shadow:0 8px 25px rgba(16,43,70,.07);transition:.25s;display:flex;flex-direction:column
+    }
+    .card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+    .portrait{
+      height:190px;display:flex;align-items:center;justify-content:center;
+      position:relative;overflow:hidden;
+      background:linear-gradient(135deg,#0e3555,#1794d0);
+    }
+    .portrait:before{
+      content:"✦";font-family:Georgia,serif;color:rgba(255,255,255,.12);
+      font-size:9rem;position:absolute;right:-5px;bottom:-40px
+    }
+    .portrait .initials{
+      width:105px;height:105px;border-radius:50%;
+      border:4px solid rgba(255,255,255,.85);
+      display:grid;place-items:center;
+      color:white;font-family:Georgia,serif;font-size:2.2rem;
+      background:rgba(0,0,0,.16);position:relative;z-index:2
+    }
+    .card-body{padding:22px}
+    .status{
+      display:inline-block;font-size:.72rem;font-weight:900;letter-spacing:.7px;
+      text-transform:uppercase;padding:5px 9px;border-radius:999px;margin-bottom:12px;
+      background:#eaf6fd;color:#07679f
+    }
+    .status.saint{background:#fff4d8;color:#946800}
+    .status.blessed{background:#f2ecff;color:#6540a5}
+    .status.venerable{background:#eaf8ef;color:#28723f}
+    .status.servant{background:#eef2f5;color:#52606d}
+    .card h3{font-family:Georgia,"Times New Roman",serif;font-size:1.35rem;margin:0 0 4px;color:var(--navy)}
+    .role{font-size:.86rem;color:var(--blue);font-weight:700;margin-bottom:12px}
+    .card p{font-size:.9rem;color:#5b6671;margin:0 0 17px}
+    .read{
+      border:0;background:none;color:var(--blue);font-weight:900;padding:0;cursor:pointer
+    }
+    .note{
+      margin-top:38px;background:#fff;border-left:4px solid var(--gold);
+      padding:18px 20px;border-radius:12px;color:#5a6570;font-size:.9rem
+    }
+    .how{
+      background:linear-gradient(135deg,#0d2943,#0a6fae);color:white
+    }
+    .how .section-head h2{color:white}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .step{
+      border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);
+      border-radius:18px;padding:24px
+    }
+    .step b{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:white;color:var(--blue);margin-bottom:16px}
+    .step h3{margin:0 0 7px}
+    .step p{margin:0;color:#dbeefa;font-size:.9rem}
+    footer{background:#0b1c2c;color:#b9c8d4;padding:45px 0}
+    footer strong{color:white}
+    .footer-grid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+    .small{font-size:.82rem;max-width:680px}
+    .modal{
+      display:none;position:fixed;inset:0;background:rgba(3,16,28,.72);z-index:50;
+      align-items:center;justify-content:center;padding:20px
+    }
+    .modal.open{display:flex}
+    .modal-box{
+      width:min(720px,100%);max-height:88vh;overflow:auto;background:white;border-radius:24px;
+      box-shadow:0 25px 80px rgba(0,0,0,.3);padding:30px
+    }
+    .close{float:right;border:0;background:#edf1f4;border-radius:50%;width:38px;height:38px;cursor:pointer;font-size:1.2rem}
+    .modal h2{font-family:Georgia,serif;color:var(--navy);margin-top:5px}
+    .modal .big-status{color:var(--blue);font-weight:900;text-transform:uppercase;font-size:.78rem;letter-spacing:1px}
+    .hidden{display:none!important}
+    @media(max-width:900px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .steps{grid-template-columns:repeat(2,1fr)}
+      .stats{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:620px){
+      .navlinks{display:none}
+      .grid,.steps{grid-template-columns:1fr}
+      .hero{min-height:72vh}
+      section{padding:62px 0}
+      .stats{margin-top:-30px}
+      .stat{padding:16px}
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero" id="home">
+  <div class="hero-inner">
+    <span class="eyebrow">Catholic Heritage of the Philippines</span>
+    <h1>Lives<br>for God.</h1>
+    <p>
+      A digital collection of saints, blesseds, venerables and servants of God
+      whose lives are connected with the Catholic faith in the Philippines.
+      Their stories remind us that holiness is lived through faith, charity,
+      courage and service.
+    </p>
+    <a class="cta" href="#people">Explore their lives ↓</a>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="#home">✦ LIVES FOR GOD</a>
+    <div class="navlinks">
+      <a href="#people">People</a>
+      <a href="#sainthood">Path to Sainthood</a>
+      <a href="#about">About</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="container" style="padding-bottom:25px">
+    <div class="stats">
+      <div class="stat"><strong>2</strong><span>Canonized Saints</span></div>
+      <div class="stat"><strong>4</strong><span>Blesseds in this collection</span></div>
+      <div class="stat"><strong>6</strong><span>Venerables in this collection</span></div>
+      <div class="stat"><strong>5</strong><span>Servants of God / causes</span></div>
+    </div>
+  </section>
+
+  <section id="people">
+    <div class="container">
+      <div class="section-head">
+        <h2>Witnesses of Faith</h2>
+        <p>Search the collection or filter it by the Church's current stage of recognition.</p>
+      </div>
+
+      <div class="toolbar">
+        <div class="filters">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="Saint">Saints</button>
+          <button class="filter" data-filter="Blessed">Blesseds</button>
+          <button class="filter" data-filter="Venerable">Venerables</button>
+          <button class="filter" data-filter="Servant of God">Servants of God</button>
+        </div>
+        <input id="search" class="search" type="search" placeholder="Search a name...">
+      </div>
+
+      <div id="grid" class="grid"></div>
+
+      <div class="note">
+        <strong>Important:</strong> “Servant of God,” “Venerable,” “Blessed,” and “Saint”
+        are not interchangeable titles. This website uses the status associated with
+        each person's cause or canonization. A person being a Servant of God does not
+        mean the Church has declared that person a saint.
+      </div>
+    </div>
+  </section>
+
+  <section id="sainthood" class="how">
+    <div class="container">
+      <div class="section-head">
+        <h2>The Path to Sainthood</h2>
+        <p>In simplified form, the Catholic Church examines a person's life, virtues, martyrdom and—when required—miracles.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><b>1</b><h3>Servant of God</h3><p>The cause is formally opened and the person's life and reputation for holiness are investigated.</p></div>
+        <div class="step"><b>2</b><h3>Venerable</h3><p>The Church recognizes heroic virtue, or the appropriate basis for advancing the cause.</p></div>
+        <div class="step"><b>3</b><h3>Blessed</h3><p>Beatification normally follows recognition of a miracle, or recognition of martyrdom under the Church's norms.</p></div>
+        <div class="step"><b>4</b><h3>Saint</h3><p>Canonization is the final declaration, normally requiring another recognized miracle after beatification.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-head">
+        <h2>About this project</h2>
+        <p>
+          “Lives for God” is a student-friendly Catholic heritage website designed
+          to introduce readers to people associated with the Philippines and its
+          Catholic mission. The information below is a concise starting point,
+          not a substitute for official Church documents.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <strong>LIVES FOR GOD</strong>
+      <div class="small">Philippine Catholic saints, blesseds, venerables and causes for sainthood.</div>
+    </div>
+    <div class="small">
+      For a published version, add your own photographs only when you have permission
+      to use them. Replace the generated initials in the cards with properly licensed
+      portraits if desired.
+    </div>
+  </div>
+</footer>
+
+<div id="modal" class="modal" aria-hidden="true">
+  <div class="modal-box">
+    <button class="close" id="closeModal" aria-label="Close">×</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+const people = [
+  {
+    name:"St. Lorenzo Ruiz",
+    status:"Saint",
+    role:"Martyr • First Filipino canonized saint",
+    years:"c. 1590–1637",
+    initials:"LR",
+    text:"A Manila-born Christian and Dominican lay confraternity member who was martyred in Nagasaki, Japan. His witness of faith made him the first Filipino canonized by the Catholic Church, in 1987.",
+    bg:"navy"
+  },
+  {
+    name:"St. Pedro Calungsod",
+    status:"Saint",
+    role:"Lay catechist • Martyr",
+    years:"c. 1654–1672",
+    initials:"PC",
+    text:"A young Visayan catechist who accompanied Jesuit missionaries to the Marianas. He remained with Fr. Diego Luis de San Vitores and was killed in 1672. Pope Benedict XVI canonized him on October 21, 2012.",
+    bg:"blue"
+  },
+  {
+    name:"Blessed Richard Fernando",
+    status:"Blessed",
+    role:"Jesuit scholastic • Martyr",
+    years:"1971–1996",
+    initials:"RF",
+    text:"A Sri Lankan Jesuit scholastic who served in Cambodia. He died while protecting students during the country's period of violent conflict and was later recognized as a martyr and Blessed.",
+    bg:"violet"
+  },
+  {
+    name:"Blessed José María of Manila",
+    status:"Blessed",
+    role:"Capuchin priest • Martyr",
+    years:"1880–1936",
+    initials:"JM",
+    text:"Born Eugenio Sanz-Orozco Mortera in Manila, he became a Capuchin Franciscan priest in Spain. He was martyred during the Spanish Civil War and was beatified in 2013.",
+    bg:"gold"
+  },
+  {
+    name:"Blessed Justo Takayama Ukon",
+    status:"Blessed",
+    role:"Japanese layman • Exile and martyr",
+    years:"c. 1552–1615",
+    initials:"JU",
+    text:"A Japanese daimyo and Christian leader who chose fidelity to Christ rather than renouncing his faith. He was exiled to Manila and died there in 1615. He was beatified in Osaka in 2017.",
+    bg:"green"
+  },
+  {
+    name:"Blessed Diego Luis de San Vitores",
+    status:"Blessed",
+    role:"Jesuit missionary • Martyr",
+    years:"1627–1672",
+    initials:"DS",
+    text:"A Spanish Jesuit missionary who served in the Philippines and later evangelized the Marianas. He was killed in 1672 on Guam and is venerated as a martyr.",
+    bg:"navy"
+  },
+  {
+    name:"Venerable María Beatriz del Rosario Arroyo",
+    status:"Venerable",
+    role:"Dominican religious • Foundress",
+    years:"1884–1957",
+    initials:"MA",
+    text:"Also known in religious life as Mother Rosario of the Visitation, she founded the Dominican Sisters of the Most Holy Rosary of the Philippines in Molo, Iloilo. Pope Francis recognized her heroic virtues in 2019.",
+    bg:"rose"
+  },
+  {
+    name:"Venerable Ignacia del Espíritu Santo",
+    status:"Venerable",
+    role:"Religious • Foundress of the RVM",
+    years:"1663–1748",
+    initials:"IE",
+    text:"Mother Ignacia founded the Beaterio de la Compania de Jesus, which developed into the Religious of the Virgin Mary, the first native religious congregation for women in the Philippines. She was declared Venerable in 2007.",
+    bg:"violet"
+  },
+  {
+    name:"Venerable Francisca del Espíritu Santo",
+    status:"Venerable",
+    role:"Dominican religious • Foundress",
+    years:"1647–1711",
+    initials:"FE",
+    text:"A Filipino Dominican religious and one of the founders of the Congregation of the Dominican Sisters of St. Catherine of Siena. She was declared Venerable in 2019.",
+    bg:"rose"
+  },
+  {
+    name:"Venerable Isabel Larrañaga Ramírez",
+    status:"Venerable",
+    role:"Religious • Foundress",
+    years:"1836–1899",
+    initials:"IR",
+    text:"Born in Manila and known in religious life as Isabel of the Heart of Jesus. She founded the Sisters of Charity of the Sacred Heart of Jesus and was declared Venerable in 1999.",
+    bg:"blue"
+  },
+  {
+    name:"Venerable Consuelo Barceló",
+    status:"Venerable",
+    role:"Augustinian religious • Cofoundress",
+    years:"1857–1940",
+    initials:"CB",
+    text:"A Spanish religious who devoted much of her ministry to the Philippines. She cofounded the Augustinian Sisters of Our Lady of Consolation and was declared Venerable in 2012.",
+    bg:"green"
+  },
+  {
+    name:"Venerable Alfredo Obviar",
+    status:"Venerable",
+    role:"Bishop of Lucena • Founder",
+    years:"1889–1978",
+    initials:"AO",
+    text:"Born in Lipa, Batangas, Bishop Obviar became the first diocesan bishop of Lucena and founded the Missionary Catechists of Saint Thérèse of the Infant Jesus. Pope Francis declared him Venerable in 2018.",
+    bg:"gold"
+  },
+  {
+    name:"Venerable Teofilo Camomot",
+    status:"Venerable",
+    role:"Archbishop • Founder",
+    years:"1914–1988",
+    initials:"TC",
+    text:"A Cebuano archbishop known for his dedication to the poor and simple lifestyle. He helped establish religious communities that developed into the Daughters of Saint Teresa. Pope Francis declared him Venerable in 2022.",
+    bg:"navy"
+  },
+  {
+    name:"Servant of God Fr. Rhoel Gallardo",
+    status:"Servant of God",
+    role:"Claretian priest • Missionary",
+    years:"1965–2000",
+    initials:"RG",
+    text:"A Filipino Claretian missionary who served in Basilan. His sainthood cause was formally opened in 2021, beginning the diocesan investigation toward possible beatification as a martyr.",
+    bg:"blue"
+  },
+  {
+    name:"Servant of God Fr. Joseph Aveni",
+    status:"Servant of God",
+    role:"Rogationist priest • Missionary",
+    years:"1918–2010",
+    initials:"JA",
+    text:"An Italian Rogationist priest who spent the last decades of his life serving in the Philippines. His cause for beatification and canonization was opened in the Diocese of Parañaque in 2020.",
+    bg:"green"
+  },
+  {
+    name:"Servant of God Alfredo Verzosa",
+    status:"Servant of God",
+    role:"Bishop of Lipa • Founder",
+    years:"1877–1954",
+    initials:"AV",
+    text:"A Filipino bishop from Vigan and the first Ilocano bishop. He co-founded the Missionary Catechists of the Sacred Heart and is remembered for his work in catechesis and evangelization.",
+    bg:"gold"
+  },
+  {
+    name:"Servant of God Fr. George J. Willmann",
+    status:"Servant of God",
+    role:"Jesuit priest • Knights of Columbus leader",
+    years:"1920–1977",
+    initials:"GW",
+    text:"An American Jesuit priest who spent much of his ministry in the Philippines and became closely associated with the Knights of Columbus. His cause was opened in Manila in 2015 and later resumed after a transfer of competence.",
+    bg:"violet"
+  }
+];
+
+const grid = document.getElementById("grid");
+const search = document.getElementById("search");
+const filters = document.querySelectorAll(".filter");
+let currentFilter = "all";
+
+function initials(name){
+  return name.split(" ").filter(w => /^[A-Za-zÀ-ÿ]/.test(w) && !["St.","Blessed","Venerable","Servant","of","God","Fr."].includes(w))
+    .slice(0,2).map(w=>w[0]).join("").toUpperCase();
+}
+
+function statusClass(status){
+  if(status==="Saint") return "saint";
+  if(status==="Blessed") return "blessed";
+  if(status==="Venerable") return "venerable";
+  return "servant";
+}
+
+function render(){
+  const q = search.value.toLowerCase().trim();
+  const filtered = people.filter(p =>
+    (currentFilter==="all" || p.status===currentFilter) &&
+    (p.name.toLowerCase().includes(q) || p.role.toLowerCase().includes(q) || p.text.toLowerCase().includes(q))
+  );
+  grid.innerHTML = filtered.map((p,i)=>`
+    <article class="card">
+      <div class="portrait" style="${portraitStyle(p.bg)}">
+ 
+
+
+
